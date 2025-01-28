@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="heart_beat-animation.css" />
+    <title>Heart beat animation</title>
+  </head>
+  <body>
+    <h2>Mi corazón cada vez que te ve!</h2>
+    <div class="back"></div>
+    <div class="love"></div>
+    <div class="love-1"></div>
+    <div class="love-2"></div>
+
+    <!-- Reproductor de audio oculto -->
+    <audio id="audio" src="audio.mp3" loop muted></audio>
+
+    <script>
+      // Función para reproducir el audio
+      function playAudio() {
+        const audio = document.getElementById('audio');
+        audio.play().catch(error => {
+          console.error('Error al reproducir el audio:', error);
+        });
+
+        // Desmutear el audio después de que se haya iniciado la reproducción
+        audio.muted = false;
+      }
+
+      // Intentar reproducir el audio al cargar la página
+      document.addEventListener('DOMContentLoaded', () => {
+        playAudio();
+
+        // Escuchar interacciones del usuario para desbloquear la reproducción si es necesario
+        document.body.addEventListener('click', () => {
+          playAudio();
+        });
+      });
+    </script>
+  </body>
+</html>
